@@ -1,0 +1,14 @@
+{
+  "name": "projectprac_5_13",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "SH",
+  "license": "MIT",
+  "description": "이것은연습파일이다",
+  "dependencies": {
+    "pokemon": "^3.1.0"
+  }
+}
