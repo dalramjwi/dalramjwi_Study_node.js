@@ -1,0 +1,14 @@
+{
+  "name": "subject_3",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "SH",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "pokedex": "^1.1.0"
+  }
+}
