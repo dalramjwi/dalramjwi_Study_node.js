@@ -4,6 +4,7 @@ let arr = ["/index1.html", "/index2.html", "/index3.html", "/index4.html"];
 
 const server = http.createServer((req, res) => {
   let url = req.url;
+  console.log(url);
   if (url === "/") {
     FileRead("./public/index.html", (data) => {
       res.writeHead(200, { "Content-Type": "text/html" });
@@ -56,9 +57,9 @@ const server = http.createServer((req, res) => {
       res.end();
     });
   }
-  if (url === "/backG.png") {
+  if (url === "/img/backG.png") {
     FileRead("./img/backG.png", (data) => {
-      res.writeHead(200, { "Content-Type": "text/img" });
+      res.writeHead(200, { "Content-Type": "image/png" });
       res.write(data);
       res.end();
     });

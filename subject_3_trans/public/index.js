@@ -68,15 +68,15 @@ for (let i = 0; i < menuArr.length; i++) {
   sectionTwo.appendChild(img);
 }
 //img background 배열
-// const background = document.getElementsByTagName("body");
-// for (let i = 0; i < menuArr.length; i++) {
-//   if (url === "http://localhost:8080/index.html") {
-//     background.style.backgroundImage = "./img/backG.png";
-//   }
-//   if (url === `http://localhost:8080/index${i}.html`) {
-//     background.style.backgroundImage = `url(${imgLink[0]})`;
-//   }
-// }
+const background = document.getElementsByTagName("body");
+for (let i = 0; i < menuArr.length; i++) {
+  if (url === "http://localhost:8080/index.html") {
+    root.style.backgroundImage = "./img/backG.png";
+  }
+  // if (url === `http://localhost:8080/index${i}.html`) {
+  //   background.style.backgroundImage = `url(${imgLink[0]})`;
+  // }
+}
 //sectionOne css
 console.dir(sectionOne);
 sectionOne.style.justifyContent = "space-between";
