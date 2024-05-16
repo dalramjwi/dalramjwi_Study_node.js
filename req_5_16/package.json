@@ -1,0 +1,11 @@
+{
+  "name": "req_5_16",
+  "version": "1.0.0",
+  "description": "get, post practice",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "SH",
+  "license": "ISC"
+}
