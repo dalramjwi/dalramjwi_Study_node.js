@@ -1,11 +1,7 @@
-//data 모듈의 형태로 받아옴, console로 확인함
-// const loadData = require("./loadData");
-// console.log(loadData("./data.json"));
-//form 모듈의 형태로 받아옴, console로 확인 안됨 - create이기에 직접 html로 확인해야함
-// const formSet = require("./formSet");
-// formSet("./text", "post");
-import { memberName } from "./data copy";
-import { loadData } from "./loadData";
-
-console.log(loadData);
-console.log(memberName);
+//? 모듈 리스트
+import { memberName } from "./data.js";
+import { formSet } from "./formSet.js";
+import { inputSet } from "./inputSet.js";
+// console.log(memberName);
+//? 모듈 실행
+formSet("/test", "post", root);

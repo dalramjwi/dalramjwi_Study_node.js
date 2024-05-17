@@ -1,14 +1,14 @@
-function formSet(actionPath, method) {
+import { inputSet } from "./inputSet.js";
+export const formSet = function formSet(actionPath, method, path) {
   const form = document.createElement("form");
   form.setAttribute("action", actionPath);
   form.setAttribute("method", method);
-  document.body.appendChild(form);
-  return console.dir(form);
-}
+  form.appendChild(inputSet("/test", "name", "입력하시오"));
+  path.appendChild(form);
+  return form;
+};
 //* 매개변수 작성법
-//* formSet("./text", "post");
+//* formSet("./text", "post", path);
 
 //? export한 데이터 받아오는 명령어
-//? const formSet = require("./formSet");
-
-module.exports = formSet;
+//? import { formSet } from "./formSet.js";

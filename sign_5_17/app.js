@@ -31,6 +31,27 @@ const server = http.createServer((req, res) => {
       res.end();
     });
   }
+  if (url === "/formSet.js") {
+    FileRead("./public/formSet.js", (data) => {
+      res.writeHead(200, { "Content-Type": "application/javascript" });
+      res.write(data);
+      res.end();
+    });
+  }
+  if (url === "/data.js") {
+    FileRead("./public/data.js", (data) => {
+      res.writeHead(200, { "Content-Type": "application/javascript" });
+      res.write(data);
+      res.end();
+    });
+  }
+  if (url === "/input.js") {
+    FileRead("./public/input.js", (data) => {
+      res.writeHead(200, { "Content-Type": "application/javascript" });
+      res.write(data);
+      res.end();
+    });
+  }
 });
 
 server.listen(8080, () => {
