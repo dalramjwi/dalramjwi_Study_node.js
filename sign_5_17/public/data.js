@@ -1,4 +1,4 @@
-export const memberName = [
+const memberName = [
   "구하림",
   "김보미",
   "김수현",
@@ -20,3 +20,4 @@ export const memberName = [
   "최유진",
   "황재민",
 ];
+module.exports = memberName;

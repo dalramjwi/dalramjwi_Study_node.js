@@ -14,6 +14,7 @@ const server = http.createServer((req, res) => {
       const postData = JSON.parse(body);
       console.log("Received text from client:", postData.title);
       todolist.push(postData.title);
+      console.log(todolist);
       res.statusCode = 200;
       res.setHeader("Content-Type", "text/html; charset=utf-8");
       res.end(data);
