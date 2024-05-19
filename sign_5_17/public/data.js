@@ -20,4 +20,12 @@ const memberName = [
   "최유진",
   "황재민",
 ];
-module.exports = memberName;
+const password = [];
+for (let i = 0; i < memberName.length; i++) {
+  let number = `0000${i + 1}`.slice(-4);
+  password.push(`${memberName[i]}${number}`);
+}
+console.log(password);
+const email = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const phone = /^\d{3}-\d{3,4}-\d{4}$/;
+module.exports = { memberName, password, email, phone };

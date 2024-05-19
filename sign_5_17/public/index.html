@@ -6,13 +6,19 @@
     <title>Document</title>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="base">
+      <div id="root"></div>
+      <div id="box"></div>
+    </div>
+
     <!-- <form action="">
       <input type="text" name="text" id="text" placeholder="입력하세요" />
     </form> -->
   </body>
   <script>
+    let base = document.getElementById("base");
     let root = document.getElementById("root");
+    let box = document.getElementById("box");
   </script>
   <script src="index.js" type="module"></script>
 </html>
