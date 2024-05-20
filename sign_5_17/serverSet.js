@@ -69,31 +69,53 @@ const serverSet = function serverSet(port) {
     req.on("end", () => {
       let parse = qs.parse(body);
       console.log(parse);
+      let resObj = {
+        successname: false,
+        successpw: false,
+        successpwRe: false,
+        successemail: false,
+        successphone: false,
+      };
+
+      //* 응답 객체 만들기
       if (memberName.includes(parse.name)) {
-        res.writeHead(200);
-        console.log(1);
-        res.end("successname");
-      } else if (password.includes(parse.pw)) {
-        res.writeHead(200);
-        console.log(2);
-        res.end("successpw");
-      } else if (password.includes(parse.pwRe)) {
-        res.writeHead(200);
-        console.log(3);
-        res.end("successpwRe");
-      } else if (email.test(parse.email)) {
-        res.writeHead(200);
-        console.log(4);
-        res.end("successemail");
-      } else if (phone.test(parse.phone)) {
-        res.writeHead(200);
-        console.log(5);
-        res.end("successphone");
-      } else {
-        res.writeHead(401);
-        console.log(6);
-        res.end("fail");
+        // res.writeHead(200);
+        // console.log(1);
+        // res.end("successname");
+        resObj.successname = true;
       }
+      if (password.includes(parse.pw)) {
+        // res.writeHead(200);
+        // console.log(2);
+        // res.end("successpw");
+        resObj.successpw = true;
+      }
+      if (password.includes(parse.pwRe)) {
+        // res.writeHead(200);
+        // console.log(3);
+        // res.end("successpwRe");
+        resObj.successpwRe = true;
+      }
+      if (email.test(parse.email)) {
+        // res.writeHead(200);
+        // console.log(4);
+        // res.end("successemail");
+        resObj.successemail = true;
+      }
+      if (phone.test(parse.phone)) {
+        // res.writeHead(200);
+        // console.log(5);
+        // res.end("successphone");
+        resObj.successphone = true;
+      }
+
+      res.writeHead(200, { "Content-Type": "application/json" });
+      res.end(JSON.stringify(resObj));
+      // else {
+      //   res.writeHead(401);
+      //   console.log(6);
+      //   res.end("fail");
+      // }
     });
   }
 

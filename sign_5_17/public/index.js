@@ -1,3 +1,6 @@
+// let base = document.getElementById("base");
+// let root = document.getElementById("root");
+// let box = document.getElementById("box");
 //? 모듈 리스트
 // import { memberName } from "./data.js";
 import { formSet } from "./formSet.js";
@@ -5,6 +8,7 @@ import { formSet } from "./formSet.js";
 // console.log(memberName);
 //? 모듈 실행
 const formData = ["./test", "post", root];
+
 const inputData = ["text", "name", "입력하시오"];
 // const buttonData = ["submit", "누르시오"];
 const inputDataname = ["name", "pw", "pwRe", "email", "phone"];
@@ -29,9 +33,22 @@ for (let i = 0; i < 5; i++) {
   colorDiv.id = `div${[i]}`;
   colorDiv.style.width = "10vw";
   colorDiv.style.height = "10vw";
+  colorDiv.style.backgroundColor = "red";
   colorDiv.style.border = "1px solid black";
   box.appendChild(colorDiv);
 }
+//?마지막 div 생성
+const lastText = document.createElement("p");
+lastText.innerHTML = "작성완료";
+add.appendChild(lastText);
+const lastDiv = document.createElement("div");
+lastDiv.id = "last";
+lastDiv.innerHTML = "아직 모든 입력란이 유효하지 않습니다.";
+lastDiv.style.width = "85vw";
+lastDiv.style.height = "10vw";
+lastDiv.style.backgroundColor = "red";
+lastDiv.style.border = "1px solid black";
+add.appendChild(lastDiv);
 // //?event 삽입
 form.addEventListener("input", (event) => {
   event.preventDefault();
@@ -43,12 +60,37 @@ form.addEventListener("input", (event) => {
 
     body: formData,
   })
-    .then((response) => response.text())
+    .then((response) => response.json())
     .then((data) => {
-      if (data === "success") {
+      if (data.successname == true)
+        // if (data === "successname") {
+        //   div1.style.backgroundColor = "green";
+        // } else if (data === "fail") {
+        //   div1.style.backgroundColor = "red";
+        // }
+        // console.log(data);
+        div0.style.backgroundColor = "green";
+      if (data.successpw == true) {
         div1.style.backgroundColor = "green";
-      } else if (data === "fail") {
-        div1.style.backgroundColor = "red";
+      }
+      if (data.successpwRe == true) {
+        div2.style.backgroundColor = "green";
+      }
+      if (data.successemail == true) {
+        div3.style.backgroundColor = "green";
+      }
+      if (data.successphone == true) {
+        div4.style.backgroundColor = "green";
+      }
+      if (
+        data.successname == true &&
+        data.successpw == true &&
+        data.successpwRe == true &&
+        data.successemail == true &&
+        data.successphone == true
+      ) {
+        last.style.backgroundColor = "green";
+        last.innerHTML = "모든 입력란이 유효합니다.";
       }
     });
 });
@@ -76,4 +118,8 @@ form.style.display = "flex";
 form.style.flexDirection = "column";
 box.style.display = "flex";
 box.style.flexDirection = "column";
-box.style.gap = "15vw";
+box.style.justifyContent = "space-between";
+body.style.backgroundColor = "rgba(61, 61, 61, 1)";
+body.style.color = "white";
+body.style.padding = "8vw";
+box.style.padding = "3vw";
