@@ -10,6 +10,7 @@ const server = http.createServer((req, res) => {
     req.on("data", (chunk) => {
       body += chunk.toString();
     });
+    console.log(body);
     req.on("end", () => {
       const postData = JSON.parse(body);
       console.log("Received text from client:", postData.title);
