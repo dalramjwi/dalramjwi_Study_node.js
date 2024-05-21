@@ -1,0 +1,10 @@
+{
+  "head": {
+    "title": "prac"
+  },
+  "body": {
+    "header": "menu",
+    "main": "main",
+    "footer": "하단"
+  }
+}
