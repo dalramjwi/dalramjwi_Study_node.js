@@ -1,0 +1,33 @@
+body {
+  background-image: url(./img/back2.jpg);
+  background-size: cover;
+  position: relative;
+  border: none;
+}
+#root {
+  background-image: url(./img/wheel.png);
+  height: 36vh;
+  width: 57vw;
+  background-size: cover;
+  position: relative;
+  top: 65vw;
+  left: 20vw;
+  z-index: 1;
+  border: none;
+}
+#text {
+  /* background-image: url(./img/001.png); */
+  width: 42vw;
+  height: 12vw;
+  background-color: rgba(0, 0, 0, 0.65);
+  color: white;
+  top: 73vw;
+  left: 28vw;
+  line-height: 12vw;
+  text-align: center;
+  z-index: 2;
+  position: relative;
+  font-weight: bold;
+  border-radius: 5vw;
+  border: none;
+}

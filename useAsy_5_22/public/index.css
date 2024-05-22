@@ -1,0 +1,14 @@
+body {
+  position: absolute;
+}
+#root {
+  background-color: red;
+  width: 10vw;
+  height: 10vw;
+  position: relative;
+  /* left: -500px; */
+}
+
+#btn {
+  position: relative;
+}
