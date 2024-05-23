@@ -62,7 +62,7 @@ form.addEventListener("input", (event) => {
   })
     .then((response) => response.json())
     .then((data) => {
-      if (data.successname == true)
+      if (data.successname == true) {
         // if (data === "successname") {
         //   div1.style.backgroundColor = "green";
         // } else if (data === "fail") {
@@ -70,17 +70,28 @@ form.addEventListener("input", (event) => {
         // }
         // console.log(data);
         div0.style.backgroundColor = "green";
+      } else if (data.successname != true) {
+        div0.style.backgroundColor = "red";
+      }
       if (data.successpw == true) {
         div1.style.backgroundColor = "green";
+      } else if (data.successpw != true) {
+        div1.style.backgroundColor = "red";
       }
       if (data.successpwRe == true) {
         div2.style.backgroundColor = "green";
+      } else if (data.successpwRe != true) {
+        div2.style.backgroundColor = "red";
       }
       if (data.successemail == true) {
         div3.style.backgroundColor = "green";
+      } else if (data.successemail != true) {
+        div3.style.backgroundColor = "red";
       }
       if (data.successphone == true) {
         div4.style.backgroundColor = "green";
+      } else if (data.successphone != true) {
+        div4.style.backgroundColor = "red";
       }
       if (
         data.successname == true &&
