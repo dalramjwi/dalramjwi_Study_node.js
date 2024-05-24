@@ -49,7 +49,7 @@ const serverSet = function serverSet(port) {
   function getMethod(req, res, filePath, contentType) {
     fs.readFile(filePath, (err, data) => {
       if (err) {
-        console.log("오류 발생", err);
+        console.log("오류 발생 : ", err);
       } else {
         res.writeHead(200, { "Content-Type": contentType });
         res.end(data);
