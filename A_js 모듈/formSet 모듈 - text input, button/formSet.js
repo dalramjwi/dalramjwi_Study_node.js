@@ -14,7 +14,7 @@ export const formSet = function formSet(formData, inputData, buttonData) {
   formData[2].appendChild(form);
   return form;
 };
-//* 매개변수 작성법
+//* 매개변수 작성법 수정
 //* formSet(formData, inputData, buttonData);
 
 //? export한 데이터 받아오는 명령어
