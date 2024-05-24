@@ -1,5 +1,34 @@
+//변수 할당
+const root = document.getElementById("root");
+const sidebar = document.getElementById("sidebar");
+const joy = document.getElementById("joy");
+const my = document.getElementById("my");
+const main = document.getElementById("main");
+const search = document.getElementById("search");
+const htmlList = document.getElementById("htmlList");
+const write = document.getElementById("write");
+//모듈 사용 - serach
 import { formSet } from "./formSet.js";
-const formData = ["actionPath", "method", "path"];
-const inputData = ["type", "name", "placeholder"];
-const buttonData = ["submit", "누르시오"];
+const formData = ["./test", "POST", search];
+const inputData = ["type", "search", "페이지 제목 검색"];
+const buttonData = ["submit", "검색"];
 formSet(formData, inputData, buttonData);
+//모듈 사용 - htmlList
+//모듈 사용 - write
+import { formSet2 } from "./formSet2.js";
+const formData2 = ["./test", "POST", write];
+const inputData2 = [
+  "type",
+  ["title", "content", "tag"],
+  ["페이지 제목 작성", "페이지 내용 작성", "태그 작성"],
+];
+const buttonData2 = ["submit", "작성"];
+formSet2(formData2, inputData2, buttonData2);
+//write css 간단히
+writeHTML.style.display = "flex";
+writeHTML.style.flexDirection = "column";
+//htmlList css 간단히
+htmlList.style.height = "30vh";
+// const ul = document.createElement("ul");
+// htmlList.appendChild(ul);
+// ul.id = "ul";

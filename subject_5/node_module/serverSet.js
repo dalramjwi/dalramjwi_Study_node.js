@@ -2,6 +2,8 @@ const serverSet = function serverSet(port) {
   const http = require("http");
   const fs = require("fs");
   const path = require("path");
+  const qs = require("node:querystring");
+  // const data = require(`./data/${jparse.title}`);
   //*문서 형식에 따른 표기
   const mimeType = {
     ".html": "text/html; charset=utf-8",
@@ -64,8 +66,17 @@ const serverSet = function serverSet(port) {
       body += data;
     });
     req.on("end", () => {
-      let parse = qs.parse(body);
-      console.log(parse);
+      let qparse = qs.parse(body);
+      let parse = JSON.stringify(qparse);
+      let jparse = JSON.parse(parse);
+      // console.log(data);
+      fs.writeFile(
+        path.join(__dirname, `./data/${jparse.title}`),
+        `${parse}`,
+        (err) => {
+          console.log(err);
+        }
+      );
     });
   }
 
