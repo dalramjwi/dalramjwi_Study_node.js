@@ -18,7 +18,7 @@ function slideMenu(open) {
     targetPosition = closedPosition;
     step = -slideStep;
   }
-  // clearInterval(interval);
+  clearInterval(interval);
   interval = setInterval(() => {
     if (open === true) {
       if (currenPosition >= targetPosition) {
