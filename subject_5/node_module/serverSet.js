@@ -69,14 +69,45 @@ const serverSet = function serverSet(port) {
       let qparse = qs.parse(body);
       let parse = JSON.stringify(qparse);
       let jparse = JSON.parse(parse);
+      const jsonFilePath = path.join(__dirname, `./data/${jparse.title}.json`);
       // console.log(data);
-      fs.writeFile(
-        path.join(__dirname, `./data/${jparse.title}`),
-        `${parse}`,
-        (err) => {
-          console.log(err);
-        }
-      );
+      //JSON 파일 제작
+      fs.writeFile(jsonFilePath, `${parse}`, (err) => {
+        console.log(err);
+      });
+      fs.readdir(jsonFilePath, (err, fileList) => {
+        console.log(fileList);
+      });
+      //JSON 파일 위치 읽기
+      // fs.readFile(jsonFilePath, (err, fileData) => {
+      //   if (err) {
+      //     console.log(err);
+      //     return;
+      //   } else {
+      //     const jsonData = JSON.parse(fileData);
+      //     const title = jsonData.title;
+      //     const content = jsonData.content;
+      //     const tag = jsonData.tag;
+      //     //JSON 데이터로 HTML 생성
+      //     const html = ` <!DOCTYPE html>
+      //         <html lang="en">
+      //         <head>
+      //             <meta charset="UTF-8">
+      //             <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      //             <title>${title}</title>
+      //         </head>
+      //         <body>
+      //             <h1>${title}</h1>
+      //             <h2>${content}</h2>
+      //             <p>${tag}</p>
+      //         </body>
+      //         </html>
+      //     `;
+      //     //응답
+      //     // res.writeHead(200, { "Content-Type": "text/html" });
+      //     // res.end(html);
+      //   }
+      // });
     });
   }
 
