@@ -82,7 +82,7 @@ const serverSet = function serverSet(port) {
 
       //JSON 파일 제작
       fs.writeFile(writeJsonFilePath, `${parse}`, (err) => {
-        console.log(err);
+        // console.log(err);
         //JSON 파일 위치 읽기
         fs.readdir(readJsonFilePath, (err, fileList) => {
           // console.log(fileList);
@@ -90,7 +90,7 @@ const serverSet = function serverSet(port) {
           if (fileArr.includes(`${title}.json`)) {
             fs.readFile(`${readJsonFilePath}/${title}.json`, (err, data) => {
               if (err) {
-                console.log(err);
+                // console.log(err);
               } else {
                 const htmlTempalte = `<!DOCTYPE html>
                           <html lang="en">
@@ -109,7 +109,7 @@ const serverSet = function serverSet(port) {
                   `${readJsonFilePath}/${title}.html`,
                   htmlTempalte,
                   (err) => {
-                    console.log(err);
+                    // console.log(err);
                   }
                 );
                 let htmlArr = [];
