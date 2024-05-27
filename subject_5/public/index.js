@@ -10,13 +10,14 @@ const write = document.getElementById("write");
 //모듈 사용 - serach
 import { formSet } from "./formSet.js";
 const formData = ["./test", "POST", search];
+//후에 "./test"가 아닌 search page와 연계
 const inputData = ["type", "search", "페이지 제목 검색"];
 const buttonData = ["submit", "검색"];
 formSet(formData, inputData, buttonData);
 //모듈 사용 - htmlList
 //모듈 사용 - write
 import { formSet2 } from "./formSet2.js";
-const formData2 = ["./test", "POST", write];
+const formData2 = ["./write", "POST", write];
 const inputData2 = [
   "type",
   ["title", "content", "tag"],
@@ -27,8 +28,3 @@ formSet2(formData2, inputData2, buttonData2);
 //write css 간단히
 writeHTML.style.display = "flex";
 writeHTML.style.flexDirection = "column";
-//htmlList css 간단히
-htmlList.style.height = "30vh";
-// const ul = document.createElement("ul");
-// htmlList.appendChild(ul);
-// ul.id = "ul";
