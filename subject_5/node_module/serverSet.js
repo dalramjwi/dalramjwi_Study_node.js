@@ -118,14 +118,10 @@ const serverSet = function serverSet(port) {
                       }
                     );
                     // 응답;
-                    res.writeHead(200, { "Content-Type": "text/html" });
                     // let fileListString = fileList.toString();
                     // let filenameSplit = fileListString.split(".");
                     // let filename = filenameSplit[0];
-                    let htmlList = [];
-                    htmlList.push(
-                      `<ul><li><a href="#">${jparse.title}</a></li></ul>`
-                    );
+                    let htmlList = `<ul><li><a href="/?id=${jparse.title}.html">${jparse.title}</a></li></ul>`;
                     const createIndex = `<!DOCTYPE html>
                     <html lang="en">
                       <head>
