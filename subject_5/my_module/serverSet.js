@@ -139,7 +139,7 @@ const serverSet = function serverSet(port) {
                             <div id="search"></div>
                             <div id="htmlList">
                               <ul>
-                               ${htmlList}
+                                ${htmlList} 
                               </ul>
                             </div>
                             <div id="write"></div>
