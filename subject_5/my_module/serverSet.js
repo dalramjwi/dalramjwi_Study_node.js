@@ -87,7 +87,6 @@ const serverSet = function serverSet(port) {
         fs.readdir(readJsonFilePath, (err, fileList) => {
           // console.log(fileList);
           let fileArr = fileList;
-          // console.log(fileArr);
           if (fileArr.includes(`${title}.json`)) {
             fs.readFile(`${readJsonFilePath}/${title}.json`, (err, data) => {
               if (err) {
@@ -109,39 +108,51 @@ const serverSet = function serverSet(port) {
                 fs.writeFile(
                   `${readJsonFilePath}/${title}.html`,
                   htmlTempalte,
-                  (err) => {
-                    console.log(err);
+                  (err, data) => {
+                    if (err) {
+                      console.log(err);
+                    } else {
+                      let htmlArr = [];
+                      for (let i = 0; i < fileArr.length; i++) {
+                        if (i % 2 === 1) {
+                          htmlArr.push(fileArr[i]);
+                        }
+                      }
+                      console.log(htmlArr);
+                    }
+                    // let newArr = htmlArr.slice(-5);
+                    // console.log(newArr);
+                    let htmlList = `<li><a href="../data/${title}.html">${htmlArr}</a></li>`;
+                    const createIndex = `<!DOCTYPE html>
+                              <html lang="en">
+                                <head>
+                                  <meta charset="UTF-8" />
+                                  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                                  <title>Document</title>
+                                  <link rel="stylesheet" href="index.css" />
+                                </head>
+                                <body>
+                                  <div id="root">
+                                    <div id="sidebar">
+                                      <div id="joy"></div>
+                                      <div id="my"></div>
+                                    </div>
+                                    <div id="main">
+                                      <div id="search"></div>
+                                      <div id="htmlList">
+                                      <ul>
+                                      ${htmlList}
+                                      </ul>
+                                      </div>
+                                      <div id="write"></div>
+                                    </div>
+                                  </div>
+                                </body>
+                                <script type="module" src="./index.js"></script>
+                              </html>`;
+                    res.end(createIndex);
                   }
                 );
-                let htmlList = `<li><a href="../data/${title}.html">${title}</a></li>`;
-                const createIndex = `<!DOCTYPE html>
-                          <html lang="en">
-                            <head>
-                              <meta charset="UTF-8" />
-                              <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                              <title>Document</title>
-                              <link rel="stylesheet" href="index.css" />
-                            </head>
-                            <body>
-                              <div id="root">
-                                <div id="sidebar">
-                                  <div id="joy"></div>
-                                  <div id="my"></div>
-                                </div>
-                                <div id="main">
-                                  <div id="search"></div>
-                                  <div id="htmlList">
-                                  <ul>
-                                  ${htmlList}
-                                  </ul>
-                                  </div>
-                                  <div id="write"></div>
-                                </div>
-                              </div>
-                            </body>
-                            <script type="module" src="./index.js"></script>
-                          </html>`;
-                res.end(createIndex);
               }
             });
           } else {
