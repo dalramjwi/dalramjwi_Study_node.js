@@ -77,7 +77,8 @@ const serverSet = function serverSet(port) {
       // console.log(data);
       //JSON 파일 제작
       fs.writeFile(writeJsonFilePath, `${parse}`, (err) => {
-        console.log(err); //JSON 파일 위치 읽기
+        console.log(err);
+        //JSON 파일 위치 읽기
         fs.readdir(readJsonFilePath, (err, fileList) => {
           console.log(fileList);
           //?읽은 파일 리스트 중, jparse.title과 제목이 같다면,
@@ -109,9 +110,16 @@ const serverSet = function serverSet(port) {
                 </body>
                 </html>
             `;
+                    fs.writeFile(
+                      `${readJsonFilePath}/${jparse.title}.html`,
+                      html,
+                      (err) => {
+                        console.log(err);
+                      }
+                    );
                     // 응답;
-                    res.writeHead(200, { "Content-Type": "text/html" });
-                    res.end(html);
+                    // res.writeHead(200, { "Content-Type": "text/html" });
+                    // res.end(html);
                   }
                 }
               );
