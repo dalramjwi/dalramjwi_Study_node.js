@@ -75,11 +75,7 @@ const serverSet = function serverSet(port) {
         `../public/data/${jparse.title}.json`
       );
       const readJsonFilePath = path.join(__dirname, `../public/data`);
-<<<<<<< HEAD
-      // console.log(data);
-=======
       // console.log(__dirname);
->>>>>>> c42fe37
       //JSON 파일 제작
       fs.writeFile(writeJsonFilePath, `${parse}`, (err) => {
         console.log(err);
@@ -104,22 +100,7 @@ const serverSet = function serverSet(port) {
                     const content = jsonData.content;
                     const tag = jsonData.tag;
                     //JSON 데이터로 HTML 생성
-<<<<<<< HEAD
-                    const html = ` <!DOCTYPE html>
-                <html lang="en">
-                <head>
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>${title}</title>
-                </head>
-                <body>
-                    <h1>${title}</h1>
-                    <h2>${content}</h2>
-                    <p>${tag}</p>
-                </body>
-                </html>
-            `;
-=======
+
                     const html = `<!DOCTYPE html>
                     <html lang="en">
                     <head>
@@ -134,7 +115,6 @@ const serverSet = function serverSet(port) {
                     </body>
                     </html>
                 `;
->>>>>>> c42fe37
                     fs.writeFile(
                       `${readJsonFilePath}/${jparse.title}.html`,
                       html,
@@ -143,11 +123,7 @@ const serverSet = function serverSet(port) {
                       }
                     );
                     // 응답;
-<<<<<<< HEAD
 
-                    htmlList += `<li><a href="../data/${jparse.title}.html">${jparse.title}</a></li>`;
-
-=======
                     // let fileListString = fileList.toString();
                     // let filenameSplit = fileListString.split(".");
                     // let filename = filenameSplit[0];
@@ -156,7 +132,6 @@ const serverSet = function serverSet(port) {
                     // !------------
 
                     let htmlList = `<li><a href="../data/${jparse.title}.html">${jparse.title}</a></li>`;
->>>>>>> c42fe37
                     const createIndex = `<!DOCTYPE html>
                     <html lang="en">
                       <head>
@@ -174,15 +149,9 @@ const serverSet = function serverSet(port) {
                           <div id="main">
                             <div id="search"></div>
                             <div id="htmlList">
-<<<<<<< HEAD
-                              <ul>
-                               ${htmlList} 
-                              </ul>
-=======
                             <ul>
                             ${htmlList}
                             </ul>
->>>>>>> c42fe37
                             </div>
                             <div id="write"></div>
                           </div>
