@@ -121,7 +121,7 @@ const serverSet = function serverSet(port) {
                     // let fileListString = fileList.toString();
                     // let filenameSplit = fileListString.split(".");
                     // let filename = filenameSplit[0];
-                    let htmlList = `<ul><li><a href="/?id=${jparse.title}.html">${jparse.title}</a></li></ul>`;
+                    let htmlList = `<ul><li><a href="/${jparse.title}.html">${jparse.title}</a></li></ul>`;
                     const createIndex = `<!DOCTYPE html>
                     <html lang="en">
                       <head>
