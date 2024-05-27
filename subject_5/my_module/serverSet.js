@@ -128,7 +128,7 @@ const serverSet = function serverSet(port) {
                     // let htmlList = `<ul><li><a href="../data/${jparse.title}.html">${jparse.title}</a></li></ul>`;
                     // !------------
 
-                    let htmlList = `<ul><li><a href="../data/${jparse.title}.html">${jparse.title}</a></li></ul>`;
+                    let htmlList = `<li><a href="../data/${jparse.title}.html">${jparse.title}</a></li>`;
                     const createIndex = `<!DOCTYPE html>
                     <html lang="en">
                       <head>
@@ -146,7 +146,9 @@ const serverSet = function serverSet(port) {
                           <div id="main">
                             <div id="search"></div>
                             <div id="htmlList">
-                              ${htmlList}
+                            <ul>
+                            ${htmlList}
+                            </ul>
                             </div>
                             <div id="write"></div>
                           </div>
@@ -177,6 +179,7 @@ const serverSet = function serverSet(port) {
     let contentType = fileUtils.getContentType(ext);
 
     if (req.method === "GET") {
+      filePath = decodeURI(filePath);
       getMethod(req, res, filePath, contentType);
     } else if (req.method === "POST") {
       postMethod(req, res);
