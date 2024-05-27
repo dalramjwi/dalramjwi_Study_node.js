@@ -86,76 +86,78 @@ const serverSet = function serverSet(port) {
         //JSON 파일 위치 읽기
         fs.readdir(readJsonFilePath, (err, fileList) => {
           // console.log(fileList);
-          let fileArr = fileList;
-          // console.log(fileArr);
-          if (fileArr.includes(`${title}.json`)) {
-            fs.readFile(`${readJsonFilePath}/${title}.json`, (err, data) => {
-              if (err) {
-                console.log(err);
-              } else {
-                const htmlTempalte = `<!DOCTYPE html>
-                          <html lang="en">
-                          <head>
-                              <meta charset="UTF-8">
-                              <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                              <title>${title}</title>
-                          </head>
-                          <body>
-                              <h1>${title}</h1>
-                              <h2>${content}</h2>
-                              <p>${tag}</p>
-                          </body>
-                          </html>`;
-                fs.writeFile(
-                  `${readJsonFilePath}/${title}.html`,
-                  htmlTempalte,
-                  (err) => {
+          let fileArr = [];
+          fileArr.push(fileList);
+          console.log(fileArr);
+          //읽은 파일 리스트 중, jparse.title과 제목이 같다면,
+          //그 파일의 경로의 title과 content, tag로 html을 제작해줘
+          for (let i = 0; i < fileList.length; i++) {
+            if (fileList[i] === `${jparse.title}.json`) {
+              fs.readFile(
+                `${readJsonFilePath}/${jparse.title}.json`,
+                (err, data) => {
+                  if (err) {
                     console.log(err);
-                  }
-                );
-              }
-            });
-          } else {
-            console.log("dir에 존재하지 않습니다.");
-          }
+                  } else {
+                    //JSON 데이터로 HTML 생성
+                    const html = `<!DOCTYPE html>
+                    <html lang="en">
+                    <head>
+                        <meta charset="UTF-8">
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                        <title>${title}</title>
+                    </head>
+                    <body>
+                        <h1>${title}</h1>
+                        <h2>${content}</h2>
+                        <p>${tag}</p>
+                    </body>
+                    </html>
+                `;
+                    fs.writeFile(
+                      `${readJsonFilePath}/${title}.html`,
+                      html,
+                      (err) => {
+                        console.log(err);
+                      }
+                    );
 
-          //           let htmlList = `<li><a href="../data/${title}.html">${title}</a></li>`;
-          //           const createIndex = `<!DOCTYPE html>
-          //           <html lang="en">
-          //             <head>
-          //               <meta charset="UTF-8" />
-          //               <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          //               <title>Document</title>
-          //               <link rel="stylesheet" href="index.css" />
-          //             </head>
-          //             <body>
-          //               <div id="root">
-          //                 <div id="sidebar">
-          //                   <div id="joy"></div>
-          //                   <div id="my"></div>
-          //                 </div>
-          //                 <div id="main">
-          //                   <div id="search"></div>
-          //                   <div id="htmlList">
-          //                   <ul>
-          //                   ${htmlList}
-          //                   </ul>
-          //                   </div>
-          //                   <div id="write"></div>
-          //                 </div>
-          //               </div>
-          //             </body>
-          //             <script type="module" src="./index.js"></script>
-          //           </html>`;
-          //           res.end(createIndex);
-          //         }
-          //       }
-          //     );
-          //   }
-          // }
+                    let htmlList = `<li><a href="../data/${title}.html">${title}</a></li>`;
+                    const createIndex = `<!DOCTYPE html>
+                    <html lang="en">
+                      <head>
+                        <meta charset="UTF-8" />
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                        <title>Document</title>
+                        <link rel="stylesheet" href="index.css" />
+                      </head>
+                      <body>
+                        <div id="root">
+                          <div id="sidebar">
+                            <div id="joy"></div>
+                            <div id="my"></div>
+                          </div>
+                          <div id="main">
+                            <div id="search"></div>
+                            <div id="htmlList">
+                            <ul>
+                            ${htmlList}
+                            </ul>
+                            </div>
+                            <div id="write"></div>
+                          </div>
+                        </div>
+                      </body>
+                      <script type="module" src="./index.js"></script>
+                    </html>`;
+                    res.end(createIndex);
+                  }
+                }
+              );
+            }
+          }
         });
       });
-      //wkfl
     });
   }
 
