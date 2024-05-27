@@ -71,9 +71,9 @@ const serverSet = function serverSet(port) {
       let jparse = JSON.parse(parse);
       const writeJsonFilePath = path.join(
         __dirname,
-        `../data/${jparse.title}.json`
+        `../public/data/${jparse.title}.json`
       );
-      const readJsonFilePath = path.join(__dirname, `../data`);
+      const readJsonFilePath = path.join(__dirname, `../public/data`);
       // console.log(data);
       //JSON 파일 제작
       fs.writeFile(writeJsonFilePath, `${parse}`, (err) => {
@@ -109,9 +109,42 @@ const serverSet = function serverSet(port) {
                 </body>
                 </html>
             `;
+                    fs.writeFile(
+                      `${readJsonFilePath}/${jparse.title}.html`,
+                      html,
+                      (err) => {
+                        console.log(err);
+                      }
+                    );
                     // 응답;
-                    res.writeHead(200, { "Content-Type": "text/html" });
-                    res.end(html);
+                    let htmlList = `<ul><li><a href="../data/${jparse.title}.html">${jparse.title}</a></li></ul>`;
+
+                    const createIndex = `<!DOCTYPE html>
+                    <html lang="en">
+                      <head>
+                        <meta charset="UTF-8" />
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                        <title>Document</title>
+                        <link rel="stylesheet" href="index.css" />
+                      </head>
+                      <body>
+                        <div id="root">
+                          <div id="sidebar">
+                            <div id="joy"></div>
+                            <div id="my"></div>
+                          </div>
+                          <div id="main">
+                            <div id="search"></div>
+                            <div id="htmlList">
+                              ${htmlList}
+                            </div>
+                            <div id="write"></div>
+                          </div>
+                        </div>
+                      </body>
+                      <script type="module" src="./index.js"></script>
+                    </html>`;
+                    res.end(createIndex);
                   }
                 }
               );
