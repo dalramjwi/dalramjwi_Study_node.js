@@ -81,9 +81,9 @@ const serverSet = function serverSet(port) {
         //JSON 파일 위치 읽기
         fs.readdir(readJsonFilePath, (err, fileList) => {
           console.log(fileList);
-          //?읽은 파일 리스트 중, jparse.title과 제목이 같다면,
-          //?그 파일의 경로의 title과 content, tag로 html을 제작해줘
-          for (let i = 0; i < fileList.length; i++) {
+          //읽은 파일 리스트 중, jparse.title과 제목이 같다면,
+          //그 파일의 경로의 title과 content, tag로 html을 제작해줘
+          for (let i = 0; i < fileList.length; i += 1) {
             if (fileList[i] === `${jparse.title}.json`) {
               fs.readFile(
                 `${readJsonFilePath}/${jparse.title}.json`,
@@ -96,20 +96,20 @@ const serverSet = function serverSet(port) {
                     const content = jsonData.content;
                     const tag = jsonData.tag;
                     //JSON 데이터로 HTML 생성
-                    const html = ` <!DOCTYPE html>
-                <html lang="en">
-                <head>
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>${title}</title>
-                </head>
-                <body>
-                    <h1>${title}</h1>
-                    <h2>${content}</h2>
-                    <p>${tag}</p>
-                </body>
-                </html>
-            `;
+                    const html = `<!DOCTYPE html>
+                    <html lang="en">
+                    <head>
+                        <meta charset="UTF-8">
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                        <title>${title}</title>
+                    </head>
+                    <body>
+                        <h1>${title}</h1>
+                        <h2>${content}</h2>
+                        <p>${tag}</p>
+                    </body>
+                    </html>
+                `;
                     fs.writeFile(
                       `${readJsonFilePath}/${jparse.title}.html`,
                       html,
@@ -118,51 +118,45 @@ const serverSet = function serverSet(port) {
                       }
                     );
                     // 응답;
-                    // res.writeHead(200, { "Content-Type": "text/html" });
-                    // res.end(html);
+                    res.writeHead(200, { "Content-Type": "text/html" });
+                    // let fileListString = fileList.toString();
+                    // let filenameSplit = fileListString.split(".");
+                    // let filename = filenameSplit[0];
+                    let htmlList = [];
+                    htmlList.push(
+                      `<ul><li><a href="#">${jparse.title}</a></li></ul>`
+                    );
+                    const createIndex = `<!DOCTYPE html>
+                    <html lang="en">
+                      <head>
+                        <meta charset="UTF-8" />
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                        <title>Document</title>
+                        <link rel="stylesheet" href="index.css" />
+                      </head>
+                      <body>
+                        <div id="root">
+                          <div id="sidebar">
+                            <div id="joy"></div>
+                            <div id="my"></div>
+                          </div>
+                          <div id="main">
+                            <div id="search"></div>
+                            <div id="htmlList">
+                              ${htmlList}
+                            </div>
+                            <div id="write"></div>
+                          </div>
+                        </div>
+                      </body>
+                      <script type="module" src="./index.js"></script>
+                    </html>`;
+                    res.end(createIndex);
                   }
                 }
               );
             }
           }
-
-          // const mapfileList = `${fileList}`.split(".");
-          // console.log(mapfileList[0]);
-          // fs.readFile();
-          // fileList.forEach(() => {
-          //   if (`${jparse.title}` === fileList) {
-          //     console.log(readJsonFilePath);
-          //     fs.readFile(`${readJsonFilePath}.${fileList}`, (err, data) => {
-          //       if (err) {
-          //         console.log(err);
-          //         return;
-          //       } else {
-          //         const jsonData = JSON.parse(data);
-          //         const title = jsonData.title;
-          //         const content = jsonData.content;
-          //         const tag = jsonData.tag;
-          //         //JSON 데이터로 HTML 생성
-          //         const html = ` <!DOCTYPE html>
-          //         <html lang="en">
-          //         <head>
-          //             <meta charset="UTF-8">
-          //             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          //             <title>${title}</title>
-          //         </head>
-          //         <body>
-          //             <h1>${title}</h1>
-          //             <h2>${content}</h2>
-          //             <p>${tag}</p>
-          //         </body>
-          //         </html>
-          //     `;
-          //         응답;
-          //         res.writeHead(200, { "Content-Type": "text/html" });
-          //         res.end(html);
-          //       }
-          //     });
-          //   }
-          // });
         });
       });
     });

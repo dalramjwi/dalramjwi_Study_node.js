@@ -27,8 +27,3 @@ formSet2(formData2, inputData2, buttonData2);
 //write css 간단히
 writeHTML.style.display = "flex";
 writeHTML.style.flexDirection = "column";
-//htmlList css 간단히
-htmlList.style.height = "30vh";
-// const ul = document.createElement("ul");
-// htmlList.appendChild(ul);
-// ul.id = "ul";
