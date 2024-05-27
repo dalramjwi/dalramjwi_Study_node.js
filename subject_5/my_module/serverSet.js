@@ -58,7 +58,7 @@ const serverSet = function serverSet(port) {
       }
     });
   }
-
+  let htmlList;
   //*post 요청일때 처리 함수
   function postMethod(req, res) {
     let body = "";
@@ -69,6 +69,7 @@ const serverSet = function serverSet(port) {
       let qparse = qs.parse(body);
       let parse = JSON.stringify(qparse);
       let jparse = JSON.parse(parse);
+
       const writeJsonFilePath = path.join(
         __dirname,
         `../public/data/${jparse.title}.json`
@@ -117,7 +118,8 @@ const serverSet = function serverSet(port) {
                       }
                     );
                     // 응답;
-                    let htmlList = `<ul><li><a href="../data/${jparse.title}.html">${jparse.title}</a></li></ul>`;
+
+                    htmlList += `<li><a href="../data/${jparse.title}.html">${jparse.title}</a></li>`;
 
                     const createIndex = `<!DOCTYPE html>
                     <html lang="en">
@@ -136,7 +138,9 @@ const serverSet = function serverSet(port) {
                           <div id="main">
                             <div id="search"></div>
                             <div id="htmlList">
-                              ${htmlList}
+                              <ul>
+                               ${htmlList}
+                              </ul>
                             </div>
                             <div id="write"></div>
                           </div>
