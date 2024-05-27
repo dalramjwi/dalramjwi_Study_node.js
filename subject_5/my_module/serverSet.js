@@ -71,19 +71,22 @@ const serverSet = function serverSet(port) {
       let jparse = JSON.parse(parse);
       const writeJsonFilePath = path.join(
         __dirname,
-        `./data/${jparse.title}.json`
+        `../public/data/${jparse.title}.json`
       );
-      const readJsonFilePath = path.join(__dirname, `./data`);
-      // console.log(data);
+      const readJsonFilePath = path.join(__dirname, `../public/data`);
+      // console.log(__dirname);
       //JSON 파일 제작
       fs.writeFile(writeJsonFilePath, `${parse}`, (err) => {
         console.log(err);
         //JSON 파일 위치 읽기
         fs.readdir(readJsonFilePath, (err, fileList) => {
-          console.log(fileList);
+          // console.log(fileList);
+          let fileArr = [];
+          fileArr.push(fileList);
+          console.log(fileArr);
           //읽은 파일 리스트 중, jparse.title과 제목이 같다면,
           //그 파일의 경로의 title과 content, tag로 html을 제작해줘
-          for (let i = 0; i < fileList.length; i += 1) {
+          for (let i = 0; i < fileList.length; i++) {
             if (fileList[i] === `${jparse.title}.json`) {
               fs.readFile(
                 `${readJsonFilePath}/${jparse.title}.json`,
@@ -121,7 +124,11 @@ const serverSet = function serverSet(port) {
                     // let fileListString = fileList.toString();
                     // let filenameSplit = fileListString.split(".");
                     // let filename = filenameSplit[0];
-                    let htmlList = `<ul><li><a href="/${jparse.title}.html">${jparse.title}</a></li></ul>`;
+                    // !------------
+                    // let htmlList = `<ul><li><a href="../data/${jparse.title}.html">${jparse.title}</a></li></ul>`;
+                    // !------------
+
+                    let htmlList = `<ul><li><a href="../data/${jparse.title}.html">${jparse.title}</a></li></ul>`;
                     const createIndex = `<!DOCTYPE html>
                     <html lang="en">
                       <head>
