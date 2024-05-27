@@ -71,9 +71,9 @@ const serverSet = function serverSet(port) {
       let jparse = JSON.parse(parse);
       const writeJsonFilePath = path.join(
         __dirname,
-        `./data/${jparse.title}.json`
+        `../data/${jparse.title}.json`
       );
-      const readJsonFilePath = path.join(__dirname, `./data`);
+      const readJsonFilePath = path.join(__dirname, `../data`);
       // console.log(data);
       //JSON 파일 제작
       fs.writeFile(writeJsonFilePath, `${parse}`, (err) => {
