@@ -113,49 +113,42 @@ const serverSet = function serverSet(port) {
                     console.log(err);
                   }
                 );
+                let htmlList = `<li><a href="../data/${title}.html">${title}</a></li>`;
+                const createIndex = `<!DOCTYPE html>
+                          <html lang="en">
+                            <head>
+                              <meta charset="UTF-8" />
+                              <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                              <title>Document</title>
+                              <link rel="stylesheet" href="index.css" />
+                            </head>
+                            <body>
+                              <div id="root">
+                                <div id="sidebar">
+                                  <div id="joy"></div>
+                                  <div id="my"></div>
+                                </div>
+                                <div id="main">
+                                  <div id="search"></div>
+                                  <div id="htmlList">
+                                  <ul>
+                                  ${htmlList}
+                                  </ul>
+                                  </div>
+                                  <div id="write"></div>
+                                </div>
+                              </div>
+                            </body>
+                            <script type="module" src="./index.js"></script>
+                          </html>`;
+                res.end(createIndex);
               }
             });
           } else {
             console.log("dir에 존재하지 않습니다.");
           }
-
-          //           let htmlList = `<li><a href="../data/${title}.html">${title}</a></li>`;
-          //           const createIndex = `<!DOCTYPE html>
-          //           <html lang="en">
-          //             <head>
-          //               <meta charset="UTF-8" />
-          //               <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          //               <title>Document</title>
-          //               <link rel="stylesheet" href="index.css" />
-          //             </head>
-          //             <body>
-          //               <div id="root">
-          //                 <div id="sidebar">
-          //                   <div id="joy"></div>
-          //                   <div id="my"></div>
-          //                 </div>
-          //                 <div id="main">
-          //                   <div id="search"></div>
-          //                   <div id="htmlList">
-          //                   <ul>
-          //                   ${htmlList}
-          //                   </ul>
-          //                   </div>
-          //                   <div id="write"></div>
-          //                 </div>
-          //               </div>
-          //             </body>
-          //             <script type="module" src="./index.js"></script>
-          //           </html>`;
-          //           res.end(createIndex);
-          //         }
-          //       }
-          //     );
-          //   }
-          // }
         });
       });
-      //wkfl
     });
   }
 
