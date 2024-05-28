@@ -3,7 +3,8 @@ const serverSet = function serverSet(port) {
   const fs = require("fs");
   const path = require("path");
   const qs = require("node:querystring");
-  const htmltemplate = require("./literalTemplate");
+  const template = require("./literalTemplate");
+
   //*문서 형식에 따른 표기
   const mimeType = {
     ".html": "text/html; charset=utf-8",
@@ -94,7 +95,7 @@ const serverSet = function serverSet(port) {
               } else {
                 fs.writeFile(
                   `${readJsonFilePath}/${title}.html`,
-                  htmltemplate(title, content, tag),
+                  template.htmlTempalte(title, content, tag),
                   (err) => {
                     // console.log(err);
                   }
@@ -109,34 +110,7 @@ const serverSet = function serverSet(port) {
                 // let newArr = htmlArr.slice(-5);
                 // console.log(newArr);
                 let htmlList = `<li><a href="../data/${title}.html">${htmlArr}</a></li>`;
-                const createIndex = `<!DOCTYPE html>
-                          <html lang="en">
-                            <head>
-                              <meta charset="UTF-8" />
-                              <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                              <title>Document</title>
-                              <link rel="stylesheet" href="index.css" />
-                            </head>
-                            <body>
-                              <div id="root">
-                                <div id="sidebar">
-                                  <div id="joy"></div>
-                                  <div id="my"></div>
-                                </div>
-                                <div id="main">
-                                  <div id="search"></div>
-                                  <div id="htmlList">
-                                  <ul>
-                                  ${htmlList}
-                                  </ul>
-                                  </div>
-                                  <div id="write"></div>
-                                </div>
-                              </div>
-                            </body>
-                            <script type="module" src="./index.js"></script>
-                          </html>`;
-                res.end(createIndex);
+                res.end(template.createTemplate(htmlList));
               }
             });
           } else {
