@@ -136,6 +136,7 @@ const serverSet = function serverSet(port) {
                                 `<li><a href="../data/${parse[i]}.html">${parse[i]}</a></li>`;
                             }
                             list = list + "</ul>";
+                            //만약 list의 내용이 undefined이면 visibillity 조정
                             return list;
                           }
                           // let newArr = htmlArr.slice(-5);
