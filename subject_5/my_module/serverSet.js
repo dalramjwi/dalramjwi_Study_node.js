@@ -126,7 +126,11 @@ const serverSet = function serverSet(port) {
                           function templateList(data) {
                             let parse = JSON.parse(data);
                             let list = "<ul>";
-                            for (let i = 0; i < parse.length; i++) {
+                            for (
+                              let i = parse.length - 1;
+                              i > parse.length - 6;
+                              i--
+                            ) {
                               list =
                                 list +
                                 `<li><a href="../data/${parse[i]}.html">${parse[i]}</a></li>`;
