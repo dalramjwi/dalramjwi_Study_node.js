@@ -32,9 +32,7 @@ const template = {
       <div id="main">
         <div id="search"></div>
         <div id="htmlList">
-        <ul>
         ${htmlList}
-        </ul>
         </div>
         <div id="write"></div>
       </div>

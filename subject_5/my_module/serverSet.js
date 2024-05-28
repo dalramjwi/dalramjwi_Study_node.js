@@ -108,27 +108,41 @@ const serverSet = function serverSet(port) {
                     console.log(err);
                   } else {
                     let parse = JSON.parse(data);
-                    console.log(parse);
-                    let titlePush = parse.push(title);
-                    console.log(title);
-                    console.log(Array.isArray(parse));
-                    console.log(titlePush);
-                    let parsetitlePush = JSON.stringify(titlePush);
+                    // console.log(parse);
+                    parse.push(title);
+                    // console.log(title);
+                    // console.log(Array.isArray(parse));
+                    // console.log(parse);
+                    let parsetitlePush = JSON.stringify(parse);
                     // console.log(Array.isArray(parse));
                     // saveDataArr.push(title);
                     // console.log(saveDataArr);
 
                     fs.writeFile(
                       "./public/saveData.json",
-                      `[${parsetitlePush}]`,
-                      (err, data) => {}
+                      `${parsetitlePush}`,
+                      (err, data) => {
+                        fs.readFile("./public/saveData.json", (err, data) => {
+                          function templateList(data) {
+                            let parse = JSON.parse(data);
+                            let list = "<ul>";
+                            for (let i = 0; i < parse.length; i++) {
+                              list =
+                                list +
+                                `<li><a href="../data/${parse[i]}.html">${parse[i]}</a></li>`;
+                            }
+                            list = list + "</ul>";
+                            return list;
+                          }
+                          // let newArr = htmlArr.slice(-5);
+                          // console.log(newArr);
+                          const htmlList = `${templateList(data)}`;
+                          res.end(template.createTemplate(htmlList));
+                        });
+                      }
                     );
                   }
                 });
-                // let newArr = htmlArr.slice(-5);
-                // console.log(newArr);
-                const htmlList = `${title}`;
-                res.end(template.createTemplate(htmlList));
               }
             });
           } else {
