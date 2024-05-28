@@ -73,6 +73,7 @@ const serverSet = function serverSet(port) {
       const title = jparse.title;
       const content = jparse.content;
       const tag = jparse.tag;
+
       //파일 위치 변수 지정
       const writeJsonFilePath = path.join(
         __dirname,
@@ -88,10 +89,6 @@ const serverSet = function serverSet(port) {
         fs.readdir(readJsonFilePath, (err, fileList) => {
           // console.log(fileList);
           let fileListArr = fileList;
-          let titleArr = [];
-          titleArr.push(title);
-          //배열 형태로 이미 담겨져 있다.
-          console.log(titleArr);
 
           if (fileListArr.includes(`${title}.json`)) {
             fs.readFile(`${readJsonFilePath}/${title}.json`, (err, data) => {
@@ -106,7 +103,27 @@ const serverSet = function serverSet(port) {
                   }
                 );
                 //요소 중 html만 배열로 담아야한다.
+                //parse된 data 중 title 배열에 담기
+                fs.readFile("./public/saveData.json", (err, data) => {
+                  if (err) {
+                    console.log(err);
+                  } else {
+                    let parse = JSON.parse(data);
+                    let titlePush = parse.push(title);
+                    console.log(parse);
+                    console.log(titlePush);
+                    let parsetitlePush = JSON.stringify(titlePush);
+                    // console.log(Array.isArray(parse));
+                    // saveDataArr.push(title);
+                    // console.log(saveDataArr);
 
+                    fs.writeFile(
+                      "./public/saveData.json",
+                      parsetitlePush,
+                      (err, data) => {}
+                    );
+                  }
+                });
                 // let newArr = htmlArr.slice(-5);
                 // console.log(newArr);
                 const htmlList = `${title}`;
