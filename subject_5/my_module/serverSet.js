@@ -3,7 +3,7 @@ const serverSet = function serverSet(port) {
   const fs = require("fs");
   const path = require("path");
   const qs = require("node:querystring");
-  // const data = require(`./data/${jparse.title}`);
+  const htmltemplate = require("./literalTemplate");
   //*문서 형식에 따른 표기
   const mimeType = {
     ".html": "text/html; charset=utf-8",
@@ -92,22 +92,9 @@ const serverSet = function serverSet(port) {
               if (err) {
                 // console.log(err);
               } else {
-                const htmlTempalte = `<!DOCTYPE html>
-                          <html lang="en">
-                          <head>
-                              <meta charset="UTF-8">
-                              <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                              <title>${title}</title>
-                          </head>
-                          <body>
-                              <h1>${title}</h1>
-                              <h2>${content}</h2>
-                              <p>${tag}</p>
-                          </body>
-                          </html>`;
                 fs.writeFile(
                   `${readJsonFilePath}/${title}.html`,
-                  htmlTempalte,
+                  htmltemplate(title, content, tag),
                   (err) => {
                     // console.log(err);
                   }
