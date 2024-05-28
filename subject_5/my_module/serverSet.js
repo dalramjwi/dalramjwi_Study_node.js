@@ -103,7 +103,6 @@ const serverSet = function serverSet(port) {
                   }
                 );
                 //요소 중 html만 배열로 담아야한다.
-                //parse된 data 중 title 배열에 담기
                 fs.readFile("./public/saveData.json", (err, data) => {
                   if (err) {
                     console.log(err);
