@@ -110,7 +110,9 @@ const serverSet = function serverSet(port) {
                   } else {
                     let parse = JSON.parse(data);
                     let titlePush = parse.push(title);
+                    console.log(title);
                     console.log(parse);
+                    console.log(Array.isArray(parse));
                     console.log(titlePush);
                     let parsetitlePush = JSON.stringify(titlePush);
                     // console.log(Array.isArray(parse));
