@@ -88,7 +88,9 @@ const serverSet = function serverSet(port) {
       fs.readdir(readJsonFilePath, (err, fileList) => {
         // console.log(fileList);
         let fileArr = fileList;
+        //배열 형태로 이미 담겨져 있다.
         console.log(fileArr);
+
         if (fileArr.includes(`${title}.json`)) {
           fs.readFile(`${readJsonFilePath}/${title}.json`, (err, data) => {
             if (err) {
