@@ -108,9 +108,9 @@ const serverSet = function serverSet(port) {
                     console.log(err);
                   } else {
                     let parse = JSON.parse(data);
+                    console.log(parse);
                     let titlePush = parse.push(title);
                     console.log(title);
-                    console.log(parse);
                     console.log(Array.isArray(parse));
                     console.log(titlePush);
                     let parsetitlePush = JSON.stringify(titlePush);
@@ -120,7 +120,7 @@ const serverSet = function serverSet(port) {
 
                     fs.writeFile(
                       "./public/saveData.json",
-                      parsetitlePush,
+                      `[${parsetitlePush}]`,
                       (err, data) => {}
                     );
                   }
