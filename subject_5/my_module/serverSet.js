@@ -126,7 +126,6 @@ const serverSet = function serverSet(port) {
                           function templateList(data) {
                             let parse = JSON.parse(data);
                             let list = "<ul>";
-
                             for (
                               let i = parse.length - 1;
                               i > parse.length - 6;
@@ -135,7 +134,7 @@ const serverSet = function serverSet(port) {
                               if (parse[i] === undefined) {
                                 list =
                                   list +
-                                  `<li style="display=hidden;"><a href="../data/${parse[i]}.html">${parse[i]}</a></li>`;
+                                  `<li style="visibility: hidden;"><a href="../data/${parse[i]}.html">${parse[i]}</a></li>`;
                               } else {
                                 list =
                                   list +
