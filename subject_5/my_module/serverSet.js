@@ -82,45 +82,42 @@ const serverSet = function serverSet(port) {
       // console.log(__dirname);
 
       //JSON 파일 제작
-      // fs.writeFile(writeJsonFilePath, `${parse}`, (err) => {
-      // console.log(err);
-      //JSON 파일 위치 읽기
-      fs.readdir(readJsonFilePath, (err, fileList) => {
-        // console.log(fileList);
-        let fileArr = fileList;
-        //배열 형태로 이미 담겨져 있다.
-        console.log(fileArr);
+      fs.writeFile(writeJsonFilePath, `${parse}`, (err) => {
+        // console.log(err);
+        //JSON 파일 위치 읽기
+        fs.readdir(readJsonFilePath, (err, fileList) => {
+          // console.log(fileList);
+          let fileListArr = fileList;
+          let titleArr = [];
+          titleArr.push(title);
+          //배열 형태로 이미 담겨져 있다.
+          console.log(titleArr);
 
-        if (fileArr.includes(`${title}.json`)) {
-          fs.readFile(`${readJsonFilePath}/${title}.json`, (err, data) => {
-            if (err) {
-              // console.log(err);
-            } else {
-              // fs.writeFile(
-              //   `${readJsonFilePath}/${title}.html`,
-              //   template.htmlTempalte(title, content, tag),
-              //   (err) => {
-              //     // console.log(err);
-              //   }
-              // );
-              let htmlArr = [];
-              for (let i = 0; i < fileArr.length; i++) {
-                if (i % 2 === 1) {
-                  htmlArr.push(fileArr[i]);
-                }
+          if (fileListArr.includes(`${title}.json`)) {
+            fs.readFile(`${readJsonFilePath}/${title}.json`, (err, data) => {
+              if (err) {
+                // console.log(err);
+              } else {
+                fs.writeFile(
+                  `${readJsonFilePath}/${title}.html`,
+                  template.htmlTempalte(title, content, tag),
+                  (err) => {
+                    // console.log(err);
+                  }
+                );
+                //요소 중 html만 배열로 담아야한다.
+
+                // let newArr = htmlArr.slice(-5);
+                // console.log(newArr);
+                const htmlList = `${title}`;
+                res.end(template.createTemplate(htmlList));
               }
-              console.log(htmlArr);
-              // let newArr = htmlArr.slice(-5);
-              // console.log(newArr);
-              let htmlList = `<li><a href="../data/${title}.html">${htmlArr}</a></li>`;
-              res.end(template.createTemplate(htmlList));
-            }
-          });
-        } else {
-          console.log("dir에 존재하지 않습니다.");
-        }
+            });
+          } else {
+            console.log("dir에 존재하지 않습니다.");
+          }
+        });
       });
-      // });
     });
   }
 
