@@ -164,8 +164,12 @@ const serverSet = function serverSet(port) {
         });
       });
     }
-    if (req.url === "/sak") {
-      console.log("삭제");
+    if (req.url === "/data/sak") {
+      let body = "";
+      req.on("data", (data) => {});
+      req.on("end", () => {
+        res.end(template.createTemplate("일단"));
+      });
     }
     if (req.url === "/su") {
     }
