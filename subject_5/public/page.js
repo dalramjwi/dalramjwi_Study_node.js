@@ -22,7 +22,7 @@ function sackEvent() {
   const check = window.confirm("삭제하시겠습니까?");
   if (check) {
     //삭제
-    body.style.backgroundColor = "yellow";
+    location.href = "../index.html";
   } else {
     //취소
     console.log("취소");

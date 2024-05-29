@@ -62,106 +62,110 @@ const serverSet = function serverSet(port) {
 
   //*post 요청일때 처리 함수
   function postMethod(req, res) {
-    let body = "";
-    req.on("data", (data) => {
-      body += data;
-    });
-    req.on("end", () => {
-      let qparse = qs.parse(body);
-      let parse = JSON.stringify(qparse);
-      let jparse = JSON.parse(parse);
-      const title = jparse.title;
-      const content = jparse.content;
-      const tag = jparse.tag;
+    if (req.url === "/write") {
+      let body = "";
+      req.on("data", (data) => {
+        body += data;
+      });
+      req.on("end", () => {
+        let qparse = qs.parse(body);
+        let parse = JSON.stringify(qparse);
+        let jparse = JSON.parse(parse);
+        const title = jparse.title;
+        const content = jparse.content;
+        const tag = jparse.tag;
 
-      //파일 위치 변수 지정
-      const writeJsonFilePath = path.join(
-        __dirname,
-        `../public/data/${jparse.title}.json`
-      );
-      const readJsonFilePath = path.join(__dirname, `../public/data`);
-      // console.log(__dirname);
+        //파일 위치 변수 지정
+        const writeJsonFilePath = path.join(
+          __dirname,
+          `../public/data/${jparse.title}.json`
+        );
+        const readJsonFilePath = path.join(__dirname, `../public/data`);
+        // console.log(__dirname);
 
-      //JSON 파일 제작
-      fs.writeFile(writeJsonFilePath, `${parse}`, (err) => {
-        // console.log(err);
-        //JSON 파일 위치 읽기
-        fs.readdir(readJsonFilePath, (err, fileList) => {
-          // console.log(fileList);
-          let fileListArr = fileList;
+        //JSON 파일 제작
+        fs.writeFile(writeJsonFilePath, `${parse}`, (err) => {
+          // console.log(err);
+          //JSON 파일 위치 읽기
+          fs.readdir(readJsonFilePath, (err, fileList) => {
+            // console.log(fileList);
+            let fileListArr = fileList;
 
-          if (fileListArr.includes(`${title}.json`)) {
-            fs.readFile(`${readJsonFilePath}/${title}.json`, (err, data) => {
-              if (err) {
-                // console.log(err);
-              } else {
-                fs.writeFile(
-                  `${readJsonFilePath}/${title}.html`,
-                  template.htmlTempalte(title, content, tag),
-                  (err) => {
-                    // console.log(err);
-                  }
-                );
-                //요소 중 html만 배열로 담아야한다.
-                fs.readFile("./public/saveData.json", (err, data) => {
-                  if (err) {
-                    console.log(err);
-                  } else {
-                    let parse = JSON.parse(data);
-                    // console.log(parse);
-                    parse.push(title);
-                    // console.log(title);
-                    // console.log(Array.isArray(parse));
-                    // console.log(parse);
-                    let parsetitlePush = JSON.stringify(parse);
-                    // console.log(Array.isArray(parse));
-                    // saveDataArr.push(title);
-                    // console.log(saveDataArr);
+            if (fileListArr.includes(`${title}.json`)) {
+              fs.readFile(`${readJsonFilePath}/${title}.json`, (err, data) => {
+                if (err) {
+                  // console.log(err);
+                } else {
+                  fs.writeFile(
+                    `${readJsonFilePath}/${title}.html`,
+                    template.htmlTempalte(title, content, tag),
+                    (err) => {
+                      // console.log(err);
+                    }
+                  );
+                  //요소 중 html만 배열로 담아야한다.
+                  fs.readFile("./public/saveData.json", (err, data) => {
+                    if (err) {
+                      console.log(err);
+                    } else {
+                      let parse = JSON.parse(data);
+                      // console.log(parse);
+                      parse.push(title);
+                      // console.log(title);
+                      // console.log(Array.isArray(parse));
+                      // console.log(parse);
+                      let parsetitlePush = JSON.stringify(parse);
+                      // console.log(Array.isArray(parse));
+                      // saveDataArr.push(title);
+                      // console.log(saveDataArr);
 
-                    fs.writeFile(
-                      "./public/saveData.json",
-                      `${parsetitlePush}`,
-                      (err, data) => {
-                        fs.readFile("./public/saveData.json", (err, data) => {
-                          function templateList(data) {
-                            let parse = JSON.parse(data);
-                            let list = "<ul>";
-                            for (
-                              let i = parse.length - 1;
-                              i > parse.length - 6;
-                              i--
-                            ) {
-                              if (parse[i] === undefined) {
-                                list =
-                                  list +
-                                  `<li style="visibility: hidden;"><a href="../data/${parse[i]}.html">${parse[i]}</a></li>`;
-                              } else {
-                                list =
-                                  list +
-                                  `<li><a href="../data/${parse[i]}.html">${parse[i]}</a></li>`;
+                      fs.writeFile(
+                        "./public/saveData.json",
+                        `${parsetitlePush}`,
+                        (err, data) => {
+                          fs.readFile("./public/saveData.json", (err, data) => {
+                            function templateList(data) {
+                              let parse = JSON.parse(data);
+                              let list = "<ul>";
+                              for (
+                                let i = parse.length - 1;
+                                i > parse.length - 6;
+                                i--
+                              ) {
+                                if (parse[i] === undefined) {
+                                  list =
+                                    list +
+                                    `<li style="visibility: hidden;"><a href="../data/${parse[i]}.html">${parse[i]}</a></li>`;
+                                } else {
+                                  list =
+                                    list +
+                                    `<li><a href="../data/${parse[i]}.html">${parse[i]}</a></li>`;
+                                }
                               }
+                              list = list + "</ul>";
+                              //만약 list의 내용이 undefined이면 visibillity 조정
+                              return list;
                             }
-                            list = list + "</ul>";
-                            //만약 list의 내용이 undefined이면 visibillity 조정
-                            return list;
-                          }
-                          // let newArr = htmlArr.slice(-5);
-                          // console.log(newArr);
-                          const htmlList = `${templateList(data)}`;
-                          res.end(template.createTemplate(htmlList));
-                        });
-                      }
-                    );
-                  }
-                });
-              }
-            });
-          } else {
-            console.log("dir에 존재하지 않습니다.");
-          }
+                            // let newArr = htmlArr.slice(-5);
+                            // console.log(newArr);
+                            const htmlList = `${templateList(data)}`;
+                            res.end(template.createTemplate(htmlList));
+                          });
+                        }
+                      );
+                    }
+                  });
+                }
+              });
+            } else {
+              console.log("dir에 존재하지 않습니다.");
+            }
+          });
         });
       });
-    });
+    }
+    if (req.url === "/sak") {
+    }
   }
 
   //*서버 생성
