@@ -6,7 +6,7 @@ const template = {
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>${title}</title>
-        <link rel="stylesheet" href="page.css" />
+        <link rel="stylesheet" href="../page.css" />
       </head>
       <body>
         <div>
@@ -24,7 +24,7 @@ const template = {
           </div>
         </div>
       </body>
-      <script src="page.js"></script>
+      <script src="../page.js"></script>
     </html>`;
   },
   createTemplate: function (htmlList) {
