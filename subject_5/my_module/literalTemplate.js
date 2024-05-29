@@ -1,18 +1,31 @@
 const template = {
   htmlTempalte: function (title, content, tag) {
     return `<!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>${title}</title>
-  </head>
-  <body>
-  <h1>${title}</h1>
-  <h2>${content}</h2>
-  <p>${tag}</p>
-  </body>
-  </html>`;
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>${title}</title>
+        <link rel="stylesheet" href="page.css" />
+      </head>
+      <body>
+        <div>
+          <a href="#">수록</a>
+        </div>
+        <div>
+          <h1>${title}</h1>
+          <h2>${content}</h2>
+          <div>
+            <p>${tag}</p>
+            <div>
+              <button>수정</button>
+              <button>삭제</button>
+            </div>
+          </div>
+        </div>
+      </body>
+      <script src="page.js"></script>
+    </html>`;
   },
   createTemplate: function (htmlList) {
     return `<!DOCTYPE html>
