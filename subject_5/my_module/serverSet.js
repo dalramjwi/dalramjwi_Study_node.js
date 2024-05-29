@@ -168,7 +168,10 @@ const serverSet = function serverSet(port) {
       let body = "";
       req.on("data", (data) => {});
       req.on("end", () => {
-        res.end(template.createTemplate("일단"));
+        fs.readFile("../public/index.html", "utf-8", (err, data) => {
+          console.log(data);
+          res.end(data);
+        });
       });
     }
     if (req.url === "/su") {
