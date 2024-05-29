@@ -18,8 +18,12 @@ const template = {
           <div>
             <p>${tag}</p>
             <div>
+            <form action="./su" method="post">
               <button>수정</button>
+            </form>
+            <form action="./sak" method="post">
               <button>삭제</button>
+            </form>
             </div>
           </div>
         </div>

@@ -165,6 +165,9 @@ const serverSet = function serverSet(port) {
       });
     }
     if (req.url === "/sak") {
+      console.log("삭제");
+    }
+    if (req.url === "/su") {
     }
   }
 
