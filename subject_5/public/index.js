@@ -17,7 +17,7 @@ formSet(formData, inputData, buttonData);
 //모듈 사용 - htmlList
 //모듈 사용 - write
 import { formSet2 } from "./formSet2.js";
-const formData2 = ["./write.html", "POST", write];
+const formData2 = ["./write", "POST", write];
 const inputData2 = [
   "type",
   ["title", "content", "tag"],
