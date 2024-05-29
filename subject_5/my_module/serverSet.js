@@ -62,7 +62,7 @@ const serverSet = function serverSet(port) {
 
   //*post 요청일때 처리 함수
   function postMethod(req, res) {
-    if (req.url === "/write") {
+    if (req.url === "/write.html") {
       let body = "";
       req.on("data", (data) => {
         body += data;
@@ -166,12 +166,20 @@ const serverSet = function serverSet(port) {
     }
     if (req.url === "/data/sak") {
       let body = "";
-      req.on("data", (data) => {});
+      req.on("data", (data) => {
+        body += data;
+      });
       req.on("end", () => {
-        fs.readFile("../public/index.html", "utf-8", (err, data) => {
-          console.log(data);
-          res.end(data);
-        });
+        let qparse = qs.parse(body);
+        let parse = JSON.stringify(qparse);
+        let jparse = JSON.parse(parse);
+        console.log(jparse);
+        res.writeHead(302, { Location: "/" });
+        res.end();
+        // fs.readFile("./public/write.html", (err, data) => {
+        //   console.log(data);
+        //   res.end(data);
+        // });
       });
     }
     if (req.url === "/su") {
