@@ -18,8 +18,12 @@ const template = {
           <div>
             <p>${tag}</p>
             <div>
-              <button>수정</button>
-              <button>삭제</button>
+            <form action="./su" method="post">
+              <button type="submit">수정</button>
+            </form>
+            <form action="./sak" method="post">
+              <button type="submit">삭제</button>
+            </form>
             </div>
           </div>
         </div>
@@ -34,7 +38,7 @@ const template = {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="./index.css" />
   </head>
   <body>
     <div id="root">

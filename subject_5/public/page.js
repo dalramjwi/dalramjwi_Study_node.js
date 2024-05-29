@@ -17,14 +17,14 @@ div4.style.display = "flex";
 //수정
 // rewrite.addEventListener
 //삭제
-sack.addEventListener("click", sackEvent);
-function sackEvent() {
-  const check = window.confirm("삭제하시겠습니까?");
-  if (check) {
-    //삭제
-    body.style.backgroundColor = "yellow";
-  } else {
-    //취소
-    console.log("취소");
-  }
-}
+// sack.addEventListener("click", sackEvent);
+// function sackEvent() {
+//   const check = window.confirm("삭제하시겠습니까?");
+//   if (check) {
+//     //삭제
+//     location.href = "/";
+//   } else {
+//     //취소
+//     console.log("취소");
+//   }
+// }
