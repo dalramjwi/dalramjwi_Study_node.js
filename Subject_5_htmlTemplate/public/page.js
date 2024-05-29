@@ -1,0 +1,12 @@
+const body = document.getElementsByTagName("body")[0];
+const div1 = document.getElementsByTagName("div")[0];
+const div2 = document.getElementsByTagName("div")[1];
+const div3 = document.getElementsByTagName("div")[2];
+const div4 = document.getElementsByTagName("div")[3];
+body.style.display = "flex";
+body.style.flexDirection = "column";
+div1.style.textAlign = "center";
+div2.style.padding = "5vw 6vw";
+div3.style.display = "flex";
+div3.style.justifyContent = "space-between";
+div4.style.display = "flex";
