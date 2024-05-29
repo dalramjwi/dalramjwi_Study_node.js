@@ -10,7 +10,7 @@ const template = {
       </head>
       <body>
         <div>
-          <a href="#">수록</a>
+          <a href="../index.html">수록</a>
         </div>
         <div>
           <h1>${title}</h1>
